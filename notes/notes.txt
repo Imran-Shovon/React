@@ -1,0 +1,18 @@
+                                                REACT
+
+Command:
+npm init
+npm install -D parcel
+npx parcel index.html
+npm install react
+npm install react-dom 
+npx parcel build index.html (building production ready code.)
+
+Episode-01: Inception
+ReactElement (Object)  =>  HTML (Browser Understand);
+ReactElement is an object. At the end of the day reactElement becomes HTML that the browser understand.
+const parent = React.createElement(“div”, { id: “parent”}, “Hello World”)
+const root =  ReactDOM.createRoot(document.getElementById(“header”))
+root.render(parent);
+
+if you have package and package-lock.json we can generate node_modules.

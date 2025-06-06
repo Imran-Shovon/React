@@ -1,0 +1,29 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This is React by Shovon Biswas",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Imran-Shovon/React.git"
+  },
+  "keywords": [],
+  "author": "Shovon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Imran-Shovon/React/issues"
+  },
+  "homepage": "https://github.com/Imran-Shovon/React#readme",
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
