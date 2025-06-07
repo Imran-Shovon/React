@@ -8,6 +8,10 @@ npm install react
 npm install react-dom 
 npx parcel build index.html (building production ready code.)
 
+-- Section 3:
+npm run start / npm start
+npm run build
+
 Episode-01: Inception
 ReactElement (Object)  =>  HTML (Browser Understand);
 ReactElement is an object. At the end of the day reactElement becomes HTML that the browser understand.
@@ -16,3 +20,16 @@ const root =  ReactDOM.createRoot(document.getElementById(“header”))
 root.render(parent);
 
 if you have package and package-lock.json we can generate node_modules.
+
+
+Section-3:
+//React Element
+//React.createElement => React Element -> Object => HTMLElement(render)
+
+
+//JSX(transpiled before it reaches the JS engine) by Parcel(Babel do this) - is not HTML in JavaScript --XML like syntax
+//JSX is a syntax extension for JavaScript that looks similar to HTML
+//JSX => Babel transpiled it to React.createElement => React Element -> JS Object => HTMLElement(render)
+
+If you want to give attribute you have to use camel case.
+Explore(various attribute)

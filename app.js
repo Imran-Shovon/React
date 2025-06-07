@@ -1,22 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", {id: "parent"}, [
-    React.createElement("div", {id: "child1", key: "child1"}, [
-        React.createElement("h1", {key: "child11"}, "This is a react course!"),
-        React.createElement("h2", {key: "child12"}, "I am h2 tag"),
-    ]),
-    React.createElement("div", {id: "child2", key: "child2"}, [
-        React.createElement("h1", {key: "child21"}, "I am h1 tag"),
-        React.createElement("h2", {key: "child22"}, "I am h2 tag"),
-    ]),
-]);
+//React Element
+//React.createElement => React Element -> Object => HTMLElement(render)
+const heading = React.createElement("h1", { id: "heading"}, "This is a React Element");
+console.log(heading);
 
-// const heading = React.createElement(
-//     "h1", 
-//     {id: "heading"}, 
-//     "Hello world from React!"
-// );
-console.log(parent);
+
+//JSX(transpiled before it reaches the JS engine) by Parcel(Babel do this) - is not HTML in JavaScript --XML like syntax
+//JSX is a syntax extension for JavaScript that looks similar to HTML
+//JSX => Babel transpiled it to React.createElement => React Element -> JS Object => HTMLElement(render)
+const headingJSX = (<h1 id="heading" className="head">
+    This is a JSX Element
+    </h1>);
+console.log(headingJSX);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(headingJSX);
