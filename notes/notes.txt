@@ -33,3 +33,14 @@ Section-3:
 
 If you want to give attribute you have to use camel case.
 Explore(various attribute)
+
+//React Component
+Class based component - OLD way
+Functional component - NEW way
+
+//Functional component
+const HeadingComponent = () => (
+    <div id="container">
+        <h1 id="heading">This is a Functional React Component</h1>
+    </div>
+);
