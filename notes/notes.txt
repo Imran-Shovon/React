@@ -44,3 +44,7 @@ const HeadingComponent = () => (
         <h1 id="heading">This is a Functional React Component</h1>
     </div>
 );
+
+
+Config driven UI
+Do not use index as a key.
