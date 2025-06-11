@@ -47,4 +47,6 @@ const HeadingComponent = () => (
 
 
 Config driven UI
-Do not use index as a key.
+Do not use default index as a key.
+
+Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
