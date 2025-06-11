@@ -31,7 +31,8 @@
     width: 250px;
     /* height: 350px; */
     padding: 5px;
-    margin: 5px;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 .res-container{
@@ -64,5 +65,21 @@
     font-size: 16px;
     color: white;
     padding: 10px;
+    border-radius: 10px;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    /* justify-content: space-around; */
+}
+
+.shimmer-card{
+    width: 250px;
+    height: 350px;
+    padding: 5px;
+    margin: 20px;
+    background-color: #f0f0f0;
     border-radius: 10px;
 }
