@@ -52,3 +52,6 @@ import {Component} from "path";
 (Normal Js utility functions)
 - useState() - Superpowerful State Variable in react
 - useEffect()
+
+- Add JSON viwer extension to your chrome.
+- Add CORS extension to your chrome.
