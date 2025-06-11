@@ -54,4 +54,4 @@ import {Component} from "path";
 - useEffect()
 
 - Add JSON viwer extension to your chrome.
-- Add CORS extension to your chrome.
+- Add CORS extension to your chrome. (After using corsproxy.io link you won't need this extension.)
