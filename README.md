@@ -55,3 +55,10 @@ import {Component} from "path";
 
 - Add JSON viwer extension to your chrome.
 - Add CORS extension to your chrome. (After using corsproxy.io link you won't need this extension.)
+
+# React Routing
+- npm install react-router-dom
+
+# 2 types of Routing in web apps
+- Client side Routing
+- Server side Routing

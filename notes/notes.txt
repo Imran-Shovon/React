@@ -49,4 +49,8 @@ const HeadingComponent = () => (
 Config driven UI
 Do not use default index as a key.
 
-Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
+Whenever state variable update, react triggers a reconciliation cycle(re-renders the component).
+
+If no dependency array is passed, useEffect will run after every render.
+if the dependency array is empty, useEffect will run only once after the first render
+if the dependency array has some values, useEffect will run only when those values change
