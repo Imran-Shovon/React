@@ -4,49 +4,78 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
-    const [itemCard, setItemCard] = useState(null);
-    const { resId } = useParams();
-    console.log("resId", resId);
+  const [resInfo, setResInfo] = useState(null);
+  const [itemCards, setItemCards] = useState([]);
+  const { resId } = useParams();
 
-    useEffect(()=> {
-        fetchMenu()
-    }, []);
+  useEffect(() => {
+    fetchMenu();
+  }, []);
 
-    const fetchMenu = async () => {
-        const data = await fetch(MENU_API + resId);
-        const json = await data.json();
-        console.log(json);
-        console.log(json.data.cards[2].card.card.info);
-        // console.log(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.carousel[0].dish.info.addons[0]);
-        console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.carousel[0]?.dish?.info);
-        
-        setItemCard(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.carousel[0]?.dish?.info?.addons);
+  const fetchMenu = async () => {
+    try {
+      const data = await fetch(MENU_API + resId);
+      const json = await data.json();
 
-        setResInfo(json.data.cards[2].card.card.info);
+      console.log("Full Menu JSON", json);
+
+      // Set restaurant info
+      const restaurantDetails = json?.data?.cards?.find(
+        (card) => card?.card?.card?.info
+      )?.card?.card?.info;
+
+      setResInfo(restaurantDetails);
+
+      // Extract menu items from REGULAR section
+      const regularCards =
+        json?.data?.cards?.find(
+          (card) => card?.groupedCard?.cardGroupMap?.REGULAR
+        )?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+
+      const extractedItems = [];
+
+      regularCards.forEach((section) => {
+        const itemArray = section?.card?.card?.itemCards;
+        if (itemArray && Array.isArray(itemArray)) {
+          itemArray.forEach((item) => {
+            if (item?.card?.info) {
+              extractedItems.push(item.card.info);
+            }
+          });
+        }
+      });
+
+      setItemCards(extractedItems);
+    } catch (error) {
+      console.error("Failed to fetch menu:", error);
     }
+  };
 
-    return (resInfo === null)? <Shimmer /> :  (
-        <div className="menu">
-            <h1>{resInfo.name}</h1>
-            <h2>{resInfo.city}</h2>
-            <p>{resInfo.cuisines.join(", ")} - {resInfo.costForTwoMessage}</p>
-            <h2>Menu</h2>
-            <ul>
-                {itemCard.map((item, index) => {
-                    return (
-                        <li key={item.groupId}>
-                            {item.choices[0].name} - {item.choices[0].price/100} Rs
-                        </li>
-                    )
-                })}
-                {/* <li>{itemCard[0].choices[0].name}</li>
-                <li>Burger</li>
-                <li>Diet Coke</li>
-                <li>Juice</li> */}
-            </ul>
-        </div>
-        
-    )
-}
+  if (!resInfo) return <Shimmer />;
+
+  return (
+    <div className="menu">
+      <h1>{resInfo.name}</h1>
+      <h2>{resInfo.city}</h2>
+      <p>
+        {resInfo.cuisines?.join(", ")} - {resInfo.costForTwoMessage}
+      </p>
+
+      <h2>Menu</h2>
+      <ul>
+  {itemCards.length > 0 ? (
+    itemCards.map((item, index) => (
+      <li key={`${item.id}-${index}`}>
+        {item.name} - ₹{(item.price || item.defaultPrice || 0) / 100}
+      </li>
+    ))
+  ) : (
+    <li>No menu items available</li>
+  )}
+</ul>
+
+    </div>
+  );
+};
+
 export default RestaurantMenu;
