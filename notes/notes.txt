@@ -54,3 +54,62 @@ Whenever state variable update, react triggers a reconciliation cycle(re-renders
 If no dependency array is passed, useEffect will run after every render.
 if the dependency array is empty, useEffect will run only once after the first render
 if the dependency array has some values, useEffect will run only when those values change
+
+
+//Class based Component
+constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+        }
+}
+
+componentDidMount() { //Called at last.
+        console.log("Parent ComponentDidMount called");
+}
+
+render() {
+    return()
+}
+
+Render phase
+    -Pure and has no side effects. May be paused aborted or restarted by react.
+
+Commit phase
+    -Can work with DOM run side effects, schedule updates.
+
+LINK: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+-Parent Constructor called.
+-Parent render called.
+
+    -First Constructor called.
+    -First render called
+
+    -second Constructor called.
+    -Second render called.
+
+    <DOM UPDATED - in single batch.
+    -First ComponentDidMount called.
+    -Second ComponentDidMount called
+
+-Parent ComponentDidMount
+
+
+----Mounting Cycle-----
+- Constructor (dummy)
+- Render (dummy)
+
+ -ComponentDidMount
+    API Called
+    This.setSate - State variable is updated
+
+-----Update----
+- Render(API Data)
+- HTML is loaded(New Data)
+
+-ComponentDidUpdate
+
+InterView Question:
+can i use async in useeffect?
+super props in react?

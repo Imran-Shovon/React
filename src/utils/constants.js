@@ -5,3 +5,4 @@ export const SWIGGY__NEW_API = "https://corsproxy.io/?https://www.swiggy.com/dap
 
 export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/";
 export const MENU_API = "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=";
+export const GITHUB_USER_API = "https://corsproxy.io/?https://api.github.com/users/imran-shovon"
