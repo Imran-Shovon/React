@@ -1,6 +1,7 @@
 import {LOGO_URL} from '../utils/constants';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     console.log("Header Rendered");
@@ -11,6 +12,10 @@ const Header = () => {
         console.log("Header Component Rendered");
     }, [btnName]);
     // let btnName = "Login";
+
+    const onlineStatus = useOnlineStatus();
+    console.log("Online Status:", onlineStatus);
+
     return (
         <div className="header">
             <div className="logo-container">
@@ -18,9 +23,11 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
+                    <li>Online Status: {onlineStatus?"✅":"🔴"}</li>
                     <li><Link className='links' to="/">Home</Link></li>
                     <li><Link className='links' to="/about">About</Link></li>
                     <li><Link className='links' to="/contact">Contact Us</Link></li>
+                    <li><Link className='links' to="/grocery">Grocery</Link></li>
                     <li>Cart</li>
                     <button className='login' 
                         onClick={()=>btnName==="Login"? setBtnName("Logout"): setBtnName("Login")}>
