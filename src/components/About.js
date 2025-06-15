@@ -18,9 +18,10 @@ class About extends Component {
         // console.log("ParentRender called");
         const { count } = this.state;
         return (
-            <div className="about">
-                <h1>About class Component</h1>
-                <h2>This is a React Course</h2>
+            <div className="mx-4 cursor-pointer my-4 p-4  flex flex-col items-center border-black rounded-lg shadow-lg bg-gray-100 ">
+                <div>
+                    <h1 className="font-bold text-2xl my-2">Here is details of the Developer</h1>
+                </div>
                 <UserClass name={"Shovon"} location={"Dhaka"}/>
             </div>
         )

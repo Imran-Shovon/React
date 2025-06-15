@@ -10,19 +10,19 @@ const RestaurantMenu = () => {
   if (!resInfo) return <Shimmer />;
 
   return (
-    <div className="menu">
-      <h1>{resInfo.name}</h1>
-      <h2>{resInfo.city}</h2>
-      <p>
+    <div className="m-4 p-4 w-[98%] bg-gray-200 shadow-lg rounded-lg flex flex-col items-center">
+      <h1 className="text-4xl font-bold">{resInfo.name}</h1>
+      <h2 className="text-xl font-bold">{resInfo.city}</h2>
+      <p className="text-lg ">
         {resInfo.cuisines?.join(", ")} - {resInfo.costForTwoMessage}
       </p>
 
-      <h2>Menu</h2>
-      <ul>
+      <h2 className="text-2xl font-bold mt-3 mb-5">Menu</h2>
+      <ul className="flex flex-wrap items-center">
   {itemCards.length > 0 ? (
     itemCards.map((item, index) => (
-      <li key={`${item.id}-${index}`}>
-        {item.name} - ₹{(item.price || item.defaultPrice || 0) / 100}
+      <li key={`${item.id}-${index}`}  className="my-2 text-lg p-2 border-b border-gray-300 w-full md:w-1/2 lg:w-1/3">
+        {index+1}. {item.name} - ₹{(item.price || item.defaultPrice || 0) / 100}
       </li>
     ))
   ) : (

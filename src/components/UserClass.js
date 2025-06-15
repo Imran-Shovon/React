@@ -36,13 +36,15 @@ class UserClass extends React.Component {
     }
 
     render() {
-        const { name, location, avatar_url } = this.state.userInfo;
+        const { name, location, avatar_url, company } = this.state.userInfo;
         // console.log(name + "Child Render called");
         return (
-            <div className="user-card">
-                <img className='img' src={avatar_url} alt="User Avatar" />
-                <h3>Name: {name}</h3>
+            <div className=" border border-solid leading-8 border-black p-4 m-4 rounded-lg shadow-lg bg-gray-50 hover:bg-gray-300 flex flex-col items-center">
+                <img className='w-80 rounded-3xl mb-5' src={avatar_url} alt="User Avatar" />
+                <h3 className='text-xl font-bold'>Name: {name}</h3>
+                <p>Company Name: {company}</p>
                 <p>Location: {location}</p>
+                <p>Mobile: 01776752696</p>
                 <p>Contact: shovonbiswas.cse@gmail.com</p>
             </div>
         )
