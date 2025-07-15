@@ -1,17 +1,21 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SWIGGY__NEW_API } from "../utils/constants";
-import Shimmer from "./Shimmer";
-import {  Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import RestaurantCard, { WithPromotedLabel } from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   //Local state variables -super powerful variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const onlineStatus = useOnlineStatus()
+  const onlineStatus = useOnlineStatus();
 
+  const RestaurantCardPromoted = WithPromotedLabel(RestaurantCard)
+
+  console.log("Restaurants", listOfRestaurants);
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -71,7 +75,10 @@ const Body = () => {
 
       <div className="flex flex-wrap justify-center">
         {filteredRestaurants.map((restaurant) => (
-          <Link className='links' key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}><RestaurantCard resData={restaurant} /></Link>
+          <Link className='links' key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}>
+            {restaurant.info.isOpen}
+            {restaurant.info.id ? (<RestaurantCardPromoted resData={restaurant}/>) : (<RestaurantCard resData={restaurant} />)}
+            </Link>
         ))}
       </div>
     </div>
