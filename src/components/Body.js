@@ -76,8 +76,8 @@ const Body = () => {
       <div className="flex flex-wrap justify-center">
         {filteredRestaurants.map((restaurant) => (
           <Link className='links' key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}>
-            {restaurant.info.isOpen}
-            {restaurant.info.id ? (<RestaurantCardPromoted resData={restaurant}/>) : (<RestaurantCard resData={restaurant} />)}
+            {/* {restaurant.info.isOpen? <h1 className="text-red-500">Opened</h1> : <h1 className="text-red-500">Closed</h1>} */}
+            {restaurant.info.isOpen ? (<RestaurantCardPromoted resData={restaurant}/>) : (<RestaurantCard resData={restaurant} />)}
             </Link>
         ))}
       </div>
