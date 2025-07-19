@@ -1,34 +1,37 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Shimmer from "./Shimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantsCategory from "./RestaurantsCategory";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
-  const [resInfo, itemCards] = useRestaurantMenu();
-
+  const [resInfo, itemCards, categories] = useRestaurantMenu();
+  const {name, cuisines, costForTwoMessage} = resInfo || {};
+  // console.log("Restaurant Menu Data:", categories);
   
   if (!resInfo) return <Shimmer />;
 
   return (
-    <div className="m-4 p-4 w-[98%] bg-gray-200 shadow-lg rounded-lg flex flex-col items-center">
-      <h1 className="text-4xl font-bold">{resInfo.name}</h1>
-      <h2 className="text-xl font-bold">{resInfo.city}</h2>
-      <p className="text-lg ">
-        {resInfo.cuisines?.join(", ")} - {resInfo.costForTwoMessage}
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p  className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwoMessage}
       </p>
+      {/* < RestaurantsCategory /> */}
+      {/* <h2 className="font-bold text-xl my-4">{categories}</h2>
+      {categories && Array.isArray(categories) && categories.length > 0 ? (
+        categories.map((category, index) => (
+          <RestaurantsCategory key={index} data={category?.card?.card} />
+        ))
+      ) : (
+        <p>No categories available</p>
+      )} */}
 
-      <h2 className="text-2xl font-bold mt-3 mb-5">Menu</h2>
-      <ul className="flex flex-wrap items-center">
-  {itemCards.length > 0 ? (
-    itemCards.map((item, index) => (
-      <li key={`${item.id}-${index}`}  className="my-2 text-lg p-2 border-b border-gray-300 w-full md:w-1/2 lg:w-1/3">
-        {index+1}. {item.name} - ₹{(item.price || item.defaultPrice || 0) / 100}
-      </li>
-    ))
-  ) : (
-    <li>No menu items available</li>
-  )}
-</ul>
+      {Array.isArray(categories) && categories.length > 0 ? (
+        categories.map((category, index) => (
+          <RestaurantsCategory key={index} data={category?.card?.card} />
+        ))
+      ) : (
+        <p className="text-gray-500 mt-4">No categories available</p>
+      )}
 
     </div>
   );

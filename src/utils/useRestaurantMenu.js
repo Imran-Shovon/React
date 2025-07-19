@@ -6,6 +6,7 @@ const useRestaurantMenu = (restaurantId) => {
     
   const [resInfo, setResInfo] = useState(null);
   const [itemCards, setItemCards] = useState([]);
+  const [categories, setCategories] = useState([]);
   const { resId } = useParams();
     // fetch Data from Swiggy API
     useEffect(() => {
@@ -25,12 +26,22 @@ const useRestaurantMenu = (restaurantId) => {
         )?.card?.card?.info;
 
         setResInfo(restaurantDetails);
+        // console.log("Restaurant Info:", restaurantDetails);
 
         // Extract menu items from REGULAR section
         const regularCards =
         json?.data?.cards?.find(
             (card) => card?.groupedCard?.cardGroupMap?.REGULAR
         )?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+
+        // console.log("Regular Cards:", regularCards);
+
+        const filteredCategories = regularCards.filter(
+            card => card.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        )
+
+        setCategories(filteredCategories)
+        // console.log("Categories:", categories);
 
         const extractedItems = [];
 
@@ -50,7 +61,7 @@ const useRestaurantMenu = (restaurantId) => {
         console.error("Failed to fetch menu:", error);
     }
     };
-    return [resInfo, itemCards];
+    return [resInfo, itemCards, categories];
 }
 
 export default useRestaurantMenu;
