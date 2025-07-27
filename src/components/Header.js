@@ -1,20 +1,14 @@
-import {LOGO_URL} from '../utils/constants';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LOGO_URL } from '../utils/constants';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
+
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
-    console.log("Header Rendered");
-    //If no dependency array is passed, useEffect will run after every render
-    //if the dependency array is empty, useEffect will run only once after the first render.(just once)
-    //if the dependency array has some variables, useEffect will run after every render when those variables change.
-    useEffect(() => {
-        console.log("Header Component Rendered");
-    }, [btnName]);
-    // let btnName = "Login";
-
+    const {loggedInUser} = useContext(UserContext);
+    console.log("UserContext data: ", loggedInUser);
     const onlineStatus = useOnlineStatus();
-    console.log("Online Status:", onlineStatus);
 
     return (
         <div className="flex justify-between  bg-pink-100 shadow-lg mb-2 mx-4 rounded-2xl">
@@ -29,10 +23,11 @@ const Header = () => {
                     <li className='px-2'><Link className='links' to="/contact">Contact Us</Link></li>
                     <li className='px-2'><Link className='links' to="/grocery">Grocery</Link></li>
                     <li className='px-2'>Cart</li>
-                    <button className='border-2 border-black px-4 py-1 ml-2 cursor-pointer rounded-lg bg-green-100 text-xl font-bold' 
+                    <button className=' px-4 py-1 ml-2 cursor-pointer rounded-lg  text-xl font-bold' 
                         onClick={()=>btnName==="Login"? setBtnName("Logout"): setBtnName("Login")}>
                         {btnName}
                     </button>
+                    <li className='px-2 font-bold text-xl'>{loggedInUser}</li>
                 </ul>
             </div>
         </div>

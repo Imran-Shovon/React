@@ -20,12 +20,13 @@
   "homepage": "https://github.com/Imran-Shovon/React#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "parcel": "^2.15.2",
+    "parcel": "^2.15.4",
     "postcss": "^8.5.5",
     "tailwindcss": "^4.1.10"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.10",
+    "caniuse-lite": "^1.0.30001727",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.2",

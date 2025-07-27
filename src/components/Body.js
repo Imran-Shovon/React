@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { SWIGGY__NEW_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import RestaurantCard, { WithPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import UserContext from "../utils/UserContext";
+
 
 const Body = () => {
   //Local state variables -super powerful variable
@@ -43,6 +45,8 @@ const Body = () => {
     );
   }
 
+  const {loggedInUser, setUserName } = useContext(UserContext);
+
   return listOfRestaurants.length === 0 ? <Shimmer /> : (
     <div className="body">
       <div className="flex justify-between mx-[100px]">
@@ -59,6 +63,12 @@ const Body = () => {
                     setFilteredRestaurants(filteredList);
                 }}
             >Search</button>
+        </div>
+        <div className="flex items-center">
+          <label className="text-xl font-bold">Username:</label>
+          <input type="text" className="m-4 p-2 border  rounded-xl border-solid border-black" 
+          value={loggedInUser}
+          onChange={(e)=> setUserName(e.target.value)}/>
         </div>
         <button
           className="px-4 py-2 bg-yellow-100 hover:bg-yellow-200 m-4 rounded-xl cursor-pointer"
